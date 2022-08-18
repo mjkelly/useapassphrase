@@ -15,7 +15,7 @@ function generatePassword(numberOfWords) {
 
   // Grab a random word, push it to the password array
   for (var i = 0; i < numberOfWords; i++) {
-      var index = Math.floor(randomNumberBetweenZeroAndOne() * 7776)
+      var index = Math.floor(randomNumberBetweenZeroAndOne() * wordlist.length)
       generatedPasswordArray.push(wordlist[index]);
   }
 
@@ -23,7 +23,7 @@ function generatePassword(numberOfWords) {
 }
 
 function setStyleFromWordNumber(passwordField, numberOfWords) {
-  var baseSize = '40';
+  var baseSize = '35';
   var newSize = baseSize * (4/numberOfWords);
   passwordField.setAttribute('style', 'font-size: ' + newSize + 'px;');
 }
@@ -71,7 +71,9 @@ var passwordField = document.getElementById('passphrase');
 var button = document.querySelector('.btn-generate');
 
 // Initially run it upon load
-passwordField.setAttribute('value', generatePassword(4));
+var defaultNumberOfWords = parseInt(document.getElementById('passphrase_select').value);
+passwordField.setAttribute('value', generatePassword(defaultNumberOfWords));
+setStyleFromWordNumber(passwordField, defaultNumberOfWords);
 calculateAndSetCrackTime();
 
 // Listen for a button click
