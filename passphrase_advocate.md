@@ -64,29 +64,25 @@ The recipe for perfect password management is straightforward.
 
 Firefox, Chrome, Safari and Internet Explorer all have built in password managers. But if you plan to use your passwords across devices, you probably should use one of these:
 
-* [**1 Password**][1p] (Windows, Mac, iOS, Android)
+* [**1Password**][1p] (Windows, Mac, Linux, iOS, Android; plus browser extensions)
+* [**BitWarden**][bw] (Windows, Mac, Linux, iOS, Android; plus browser extensions)
 * [**LastPass**][lp] (iOS, Android; Chrome plugin works on Windows, Mac, Linux)
 * [**KeePass**][kp] (Linux, Windows, Mac, Android)
 
-[1p]: https://agilebits.com/onepassword
+[1p]: https://1password.com/
+[bw]: https://bitwarden.com/
 [lp]: https://lastpass.com/
 [kp]: http://keepass.info/
 
 ### 2. Use a strong <u>master password</u> for your password manager.
 
-This is when a passphrase would be especially useful.
+This password needs to be strong, and you need to memorize it. This is when a passphrase would be especially useful.
 
-### 3. Use a different passphrase for every site.
+### 3. Use a different password or passphrase for every site.
 
-<span style="color: #000;">belief romanian bridge profit</span>  
-<span style="color: #333;">arts started bundle disease</span>  
-<span style="color: #666;">delay gradual asset centers</span>  
-<span style="color: #999;">keating post warburg johnson</span>  
-<span style="color: #AAA;">efforts denying billed buy</span>  
-<span style="color: #CCC;">whose category fonts mutual</span>  
-<span style="color: #EEE;">easing autonomy weight five</span>
+Your password manager should provide a password or passphrase generator -- use it! It should have options to adjust length and include or exclude the various characters that are allowed or disallowed on different sites.
 
-And so on.
+You don't need to generate per-site passwords with this site, because, since you're using a password manager, you won't need to memorize them.
 
 ## Should I really be getting my password from a website?
 
@@ -95,5 +91,12 @@ Honestly? Probably not. But in this page's defense, it makes **zero** external c
 For extra security, this page is designed to run entirely offline: <a href="/generate_passphrase.html" download>save</a> this page to your hard drive, disconnect from the internet, and open it in a browser. This way you can assure that the passwords are not being transmitted anywhere.
 
 And for the truly paranoid, I recommend something called [diceware](http://world.std.com/~reinhold/diceware.html), which is a completely offline, non-computer based method of creating passphrases. It involves six dice, and a printed wordlist. The author also recommends you close your blinds while doing it.
+
+## Why did you fork Use A Passphrase?
+
+1. The project appears to be unmaintained at the moment. The last update was in 2019, and there are a handful of open issues.
+2. I think passphrases using a larger word list are more convenient, because you get more entropy packed into fewer words. This site allows me to use a larger word list. This site uses a word list of about 44,000 words instead of the about 7.5k words in the commonly-used EFF long wordlist, used by Use A Passphrase.
+
+I'm very grateful to Mike Hearn for making Use A Passphrase and I've recommended it to my friends!
 
 ## Thanks for reading, and stay secure!
