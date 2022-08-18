@@ -93,6 +93,10 @@ li {
   text-align: center;
   margin-top: 10px;
 }
+#passphrase {
+  text-align: center;
+  font-size: x-large;
+}
 .passphrase-label {
   margin: 0 auto 3px auto;
   font-size: 75%;
@@ -102,15 +106,6 @@ li {
 .passphrase-options {
   margin-top: 1%;
   text-align: center;
-}
-.crack-time-label {
-  text-align: center;
-  margin: 0 auto;
-  font-weight: 700;
-  font-size: 72%;
-}
-.crack-time-label .crack-time {
-  font-weight: 400;
 }
 .social-buttons {
   text-align: center;
