@@ -1,5 +1,6 @@
 'use strict';
 var selectField = document.getElementById('passphrase_select');
+var separatorField = document.getElementById('passphrase_separator');
 var passwordField = document.getElementById('passphrase');
 var button = document.querySelector('.btn-generate');
 
@@ -9,7 +10,7 @@ function randomNumberBetweenZeroAndOne() {
   return crypto.getRandomValues(new Uint32Array(1))[0] / 4294967295;
 }
 
-function generatePassword(numberOfWords) {
+function generatePassword(numberOfWords, separator) {
   numberOfWords = parseInt(numberOfWords);
 
   // Empty array to be filled with wordlist
@@ -22,7 +23,7 @@ function generatePassword(numberOfWords) {
       generatedPasswordArray.push(wordlist[index]);
   }
 
-  return generatedPasswordArray.join(' ');
+  return generatedPasswordArray.join(separator);
 }
 
 function setStyleFromWordNumber(passwordField, numberOfWords) {
@@ -37,7 +38,12 @@ function showPassphrase(value) {
 
 function generateNewPassphrase() {
   var numberOfWords = selectField.options[selectField.selectedIndex].value;
-  showPassphrase(generatePassword(numberOfWords));
+  var separatorName = separatorField.options[separatorField.selectedIndex].value;
+  var separator = ' ';
+  if (separatorName === 'dashes') {
+    separator = '-';
+  }
+  showPassphrase(generatePassword(numberOfWords, separator));
 }
 
 // Initially run it upon load
