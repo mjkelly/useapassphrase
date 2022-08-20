@@ -55,6 +55,7 @@ button {
   background-color: white;
   height: 34px;
   transition: all 0.2s ease;
+  margin: 0 30px;
 }
 button:hover {
   background-color: #5dfa7b;
@@ -94,12 +95,22 @@ li {
   margin-top: 10px;
 }
 #passphrase {
-  text-align: center;
   font-size: x-large;
+  margin: 25px;
+}
+#copy-btn {
+  text-align: center;
+}
+#passphrase_container {
+  margin: 50px;
+  text-align: center;
+}
+#passphrase_stats {
+  color: #888;
+  text-align: center;
+  margin: 25px;
 }
 .passphrase-label {
-  margin: 0 auto 3px auto;
-  font-size: 75%;
   color: #888;
   text-align: center;
 }
@@ -123,14 +134,6 @@ li {
   padding: 0 20px 0 20px;
   text-decoration: none;
   font-size: 85%;
-}
-.social-buttons .sc--facebook {
-  color: #3b5998;
-  fill: #3b5998;
-}
-.social-buttons .sc--twitter {
-  color: #55acee;
-  fill: #55acee;
 }
 .social-buttons .sc--github {
   color: black;

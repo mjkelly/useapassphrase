@@ -1,8 +1,12 @@
 'use strict';
-var selectField = document.getElementById('passphrase_select');
-var separatorField = document.getElementById('passphrase_separator');
-var passwordField = document.getElementById('passphrase');
-var button = document.querySelector('.btn-generate');
+
+const selectField = document.getElementById('passphrase_select');
+const separatorField = document.getElementById('passphrase_separator');
+const passwordField = document.getElementById('passphrase');
+const passwordStatsField = document.getElementById('passphrase_stats');
+const generateButton = document.getElementById('generate-btn');
+const copyButton = document.getElementById('copy-btn');
+const equivalentPasswordCharsetSize = 89;
 
 // Cryptographic replacement for Math.random()
 function randomNumberBetweenZeroAndOne() {
@@ -26,14 +30,12 @@ function generatePassword(numberOfWords, separator) {
   return generatedPasswordArray.join(separator);
 }
 
-function setStyleFromWordNumber(passwordField, numberOfWords) {
-  var baseSize = '35';
-  var newSize = baseSize * (4/numberOfWords);
-  passwordField.setAttribute('style', 'font-size: ' + newSize + 'px;');
-}
-
-function showPassphrase(value) {
-  passwordField.innerHTML = value;
+function showPassphraseStats(numberOfWords, wordListLength) {
+  var entropyPerWord = Math.log2(wordListLength);
+  var totalEntropy = numberOfWords * entropyPerWord;
+  var equivalentPasswordLen = Math.round(totalEntropy / Math.log2(equivalentPasswordCharsetSize)) 
+  passwordStatsField.innerHTML =
+    `Using a ${wordListLength}-word list, this passphrase has ${Math.round(totalEntropy)} bits of entropy. That's as strong as a  ${equivalentPasswordLen}-character random password, containing uppercase and lowercase letters, numbers, and symbols.`;
 }
 
 function generateNewPassphrase() {
@@ -42,12 +44,24 @@ function generateNewPassphrase() {
   var separator = ' ';
   if (separatorName === 'dashes') {
     separator = '-';
+  } else if (separatorName === 'underscores') {
+    separator = '_';
   }
-  showPassphrase(generatePassword(numberOfWords, separator));
+  passwordField.innerHTML = generatePassword(numberOfWords, separator);
+  showPassphraseStats(numberOfWords, wordlist.length);
 }
+
+function copyPassphrase() {
+  navigator.clipboard.writeText(passwordField.innerHTML);
+  copyButton.textContent = '✨ Copied!';
+  window.setTimeout(() => {
+    copyButton.textContent = '📋 Copy'
+  }, 1000);
+}
+
+
+generateButton.addEventListener('click', generateNewPassphrase);
+copyButton.addEventListener('click', copyPassphrase);
 
 // Initially run it upon load
 generateNewPassphrase();
-
-// Listen for a button click
-button.addEventListener('click', generateNewPassphrase);

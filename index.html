@@ -5,16 +5,18 @@
 <link rel="stylesheet" href="css/styles.css?__inline=true" />
 <link rel="stylesheet" href="css/fonts.css?__inline=true" />
 <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAABgUExURUxpcUClvESvtFnvhVPbkzeI0TN34C5n7F37eyhe8PT6+zuTyJvlx0/RmkvEpHum7E3Ln+P48IPZvUi7q9H53m6/x7P2yYS73j2bwsni8FuW4mmt1XL4j5L4qqXT4aK+9IEBSNQAAAABdFJOUwBA5thmAAADY0lEQVR42u2a6VaDMBCFCWsJpeyrLO//lg7U1lqBhskETpX7U1vvN0smA0dNO3To0JuLc76Xddqe7mryrd2j5vSsdMvgb4G3Oai9wWyVBj5hlzbbZSEfnFo+/fNGvf+CzdiVfAP/dL44hmFEyv2Xft8oJnjlD2UAAr6jP/QiEKjybwX8rzlQlwCRjykDSEUHjWG0ihIgOGZSNX2YixXgmoJGSQKEExupSEEqngA1XdCsAzD2a8HrNDIj+gqs2De4aVLXoD2tSqppmsQAK6vaKABYdbRz0+TUAKuKmpom7X7IDWPVzgtdmO8KAF14pn0QMYz03QDifw7g+wfAfwcIw78GsHa27w5wuRwAfw/gnJ+FlXNiAFhwHuWb/rfCmy4PSpIko9vJzj/dp8x/uA/2ozhl9OdoxZ/jVTwSZAT+8eCO2e94kui6Lp2EMXjsIgkAeiXvLxFELEsQyz5iVXJVyOUf8TogkCmAL91EGWMdugC+T/B4wxjDfhUmDcE5rhgrkB1AkgCJFNAkAPqQsQgJQHShIWsQhWFOBVCiWiAMiS5UVqIA4jAkus4/sAAXIoCi9FAAl1cAPNNHvZp0hacEINJvYizbAeAr+iwDfxDfGmA05/dhy1hFD5Aky/E/BF0s5kABQKU/zfduaeAXnkUN8DvgjJWzh6GwqAG6iSWjnJ82SIBsHmAq30VZRtQA+jzAx++p5HkFMcDsNskn1zzPY1sBVJOn3ps9bOQA0d4AfPLIeV69FQAcuVVNGFg2OUA5FebcMQxsHMD8cO0morXm80wPMDTc0yiuLavbEGAgKJ7in1+9VQBAyz2cug78a21TgIEATCsoRATtt+ivBmCs+rcWX4OgAV5s8/yO0C9/EAkg8jgxMLx+B6QQAIacwJR9WwCRXVYQwFEHIBJc4BwA7wpg7QxgHQACAP3eAJrIK0gkQIBbpqcubhxAb1lE7wltHEAlctMKyXFc1PeW96wVcl3cH7Jwt+jvWrpuj/oinPGKJgG4CmjctinOAXddbCYtkhRAArCnCVIg3wUBPgFjF8gSROgOuI4Q265lG8CVKqMtl4MK/APJMQpCT+Taxc6gJwIcAgwg6fi/7jJQv5Khsgd7l+QfvLmzJHdBgUYkbiPckRfA7Hnua0dcdkDrfujQIZX6BHSKPNbujiIfAAAAAElFTkSuQmCC">
-<title>Use a Strong Passphrase</title>
+<title>Passphraser</title>
 </head>
 <body>
 <div class="container">
   <div class="header">
-    <img src="img/lock.png?__inline=true" width="100" height="130" alt="Lock icon by Milky - Digital innovation" />
-    <h1 class="title">Use A <span>Strong Passphrase</span></h1>
+    <h1 class="title">🔒<span>Pass</span>phraser</h1>
   </div>
-  <p class="passphrase-label">Generate a passphrase:</p>
-  <div id="passphrase">Loading...</div>
+  <div id="passphrase_container">
+    <div id="passphrase">Loading...</div>
+    <button id="copy-btn">📋 Copy</button>
+  </div>
+  <div id="passphrase_stats"></div>
   <div class="passphrase-options">
     <select id="passphrase_select">
       <option value="4">Four-word passphrase</option>
@@ -25,8 +27,9 @@
     <select id="passphrase_separator">
       <option value="spaces" selected>spaces</option>
       <option value="dashes">dashes</option>
+      <option value="underscores">underscores</option>
     </select>
-    <button class="btn-generate">Generate New Passphrase</button>
+    <button id="generate-btn">🔀 Generate New Passphrase</button>
   </div>
   <div class="social-buttons">
     <a href="http://www.github.com/mjkelly/useapassphrase" target="_blank" class="sc-btn sc--github"> <span class="sc-icon"> <svg viewBox="0 0 33 33" width="25" height="25" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M 16,0C 7.163,0,0,7.163,0,16s 7.163,16, 16,16s 16-7.163, 16-16S 24.837,0, 16,0z M 25.502,25.502 c-1.235,1.235-2.672,2.204-4.272,2.881c-0.406,0.172-0.819,0.323-1.238,0.453L 19.992,26.438 c0-1.26-0.432-2.188-1.297-2.781 c 0.542-0.052, 1.039-0.125, 1.492-0.219s 0.932-0.229, 1.438-0.406s 0.958-0.388, 1.359-0.633s 0.786-0.563, 1.156-0.953s 0.68-0.833, 0.93-1.328 s 0.448-1.089, 0.594-1.781s 0.219-1.456, 0.219-2.289c0-1.615-0.526-2.99-1.578-4.125c 0.479-1.25, 0.427-2.609-0.156-4.078l-0.391-0.047 c-0.271-0.031-0.758,0.083-1.461,0.344s-1.492,0.688-2.367,1.281c-1.24-0.344-2.526-0.516-3.859-0.516c-1.344,0-2.625,0.172-3.844,0.516 c-0.552-0.375-1.075-0.685-1.57-0.93c-0.495-0.245-0.891-0.411-1.188-0.5s-0.573-0.143-0.828-0.164s-0.419-0.026-0.492-0.016 s-0.125,0.021-0.156,0.031c-0.583,1.479-0.635,2.839-0.156,4.078c-1.052,1.135-1.578,2.51-1.578,4.125c0,0.833, 0.073,1.596, 0.219,2.289 s 0.344,1.286, 0.594,1.781s 0.56,0.938, 0.93,1.328s 0.755,0.708, 1.156,0.953s 0.854,0.456, 1.359,0.633s 0.984,0.313, 1.438,0.406 s 0.951,0.167, 1.492,0.219c-0.854,0.583-1.281,1.51-1.281,2.781l0,2.445 c-0.472-0.14-0.937-0.306-1.394-0.5 c-1.6-0.677-3.037-1.646-4.272-2.881c-1.235-1.235-2.204-2.672-2.881-4.272C 2.917,19.575, 2.563,17.815, 2.563,16 s 0.355-3.575, 1.055-5.23c 0.677-1.6, 1.646-3.037, 2.881-4.272s 2.672-2.204, 4.272-2.881 C 12.425,2.917, 14.185,2.563, 16,2.563s 3.575,0.355, 5.23,1.055c 1.6,0.677, 3.037,1.646, 4.272,2.881 c 1.235,1.235, 2.204,2.672, 2.881,4.272C 29.083,12.425, 29.438,14.185, 29.438,16s-0.355,3.575-1.055,5.23 C 27.706,22.829, 26.737,24.267, 25.502,25.502z"></path></g></svg> </span> <span class="sc-text">Fork It</span> </a>
@@ -36,8 +39,9 @@
 <div class="footer">
   <div class="container">
     <p><b>Credits:</b>
-    <p>Lock icon created by Milky.</p>
-    <p>Based on <a href="https://www.useapassphrase.com/" target="_blank">Use A Passphrase</a>, by <a href="http://www.twitter.com/mikehearn" target="_blank">@mikehearn.</a></p>
+    <p>Based on <a href="https://www.useapassphrase.com/" target="_blank">Use A Passphrase</a>,
+      by <a href="http://www.twitter.com/mikehearn" target="_blank">@mikehearn.</a></p>
+    <p>Modifications by <a href="https://www.michaelkelly.org">Michael Kelly</a>.</p>
     <p><b>Disclaimer:</b></p>
     <p>I assume no responsibility if you use a password from this site and subsequently are hacked.</div>
 </div>
