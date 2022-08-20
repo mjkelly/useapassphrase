@@ -1,102 +1,35 @@
 ## Why should I use a random passphrase?
 
-Because humans are terrible at creating secure passwords. The [famous xkcd comic][1] got it right: humans have been trained to use <b>hard-to-remember</b> passwords that are <b>easy</b> for computers to guess.
+The passwords that most people come up with are hard to remember _and_ easy for computers to guess. Randomness is the source of strength in a password, and humans are terrible at coming up with randomness.
 
-[1]: http://xkcd.com/936/
+We use common words, easily-typed sequences on a keyboard, or our own personal information, which a motivated attacker can learn.
 
-Try as we might, humans usually end up using one of a few predictable patterns when creating passwords. We base them on things we can remember, such as names, locations, dates or just common English words. Then, we add some spice with a capital letter, some numbers, or a symbol.
+Strong, random passwords like `pQ[!:WQblzY2` are hard to remember.
 
-Does your password fall into this group?
+Random passphrases can be equally as strong but are easier to remember. For example, `sarcasm towel mimosas smallest censoring` is a passphrase of approximately equal strength to `pQ[!:WQblzY2`. If you find the passphrase easier to remember, you are not alone. Passphrases are easier for most humans to remember, but no easier for computers to guess.
 
-| Bad Password Patterns | Is It Memorable?  | Time To Crack  |
-| ------------- |---------------| ------|
-| A common word (example: `december`)| Yes. | 18 milliseconds <small>(Seriously. Try it in the box at the top.)</small> |
-| An easily-typed spatial word (example: `qwerty` or `aaaaaaaa`)| Very much so. | 10 milliseconds |
-| The family dog (example: `rusty`) | Yep. | 27 milliseconds |
-| An important number, such as a date or zip code (example: `03261981`)| It's memorable to you, certainly. | 2.213 seconds |
-| A word with trivial letter→number substitutions (example: `S4nfr4n`)| Sort of memorable, but you may forget which letters are substituted for numbers.| 639 milliseconds|
+For a longer discussion about how passwords are cracked, check out [useapassphrase.com][uap]. It's the site this one is based on!
 
-If your password resembles any of these examples, it is _instantly crackable._ Even a mix of these patterns, such as `[common word]+[number]` will be straightforward to crack.
+[uap]: https://www.useapassphrase.com/
 
-Compare those to a passphrase:
+## How do you determine password strength? How do you compare the strength of a password and a passphrase?
 
-| Password Pattern | Is It Memorable?  | Time To Crack  |
-| ------------- |---------------| ------|
-| Four or more randomly chosen words (example: `mergers decade labeled manager`) | Type it a few times, and you'll have it committed to memory. | **6,000,126 centuries.** Give or take. |
+The most principled way of determining password complexity is to assume your attacker knows your password generation scheme. So if you're using a 10-character random password with a specific set of special characters, assume they know that. Now, trick to remaining secure is to make them search as many passwords as possible.
 
+For instance, a 5-character random password made up of only lowercase letters (26 options), has `26 * 26 * 26 * 26 * 26` combinations, because you can use any of 26 different letters in each of 5 places. That's 11,881,376 combinations. That sounds like a lot, but hackers can guess passwords at a very high rate that's always increasing.
 
-## Is it really that easy to crack a password? How is it done, exactly?
+Since these numbers of combinations get huge, we usually talk about the log-base-2 (log2) of these numbers. `log2(11,881,376) = 23.5`. We call this number _bits of entropy_, so a 5-character random password made up of only lowercase letters has 23.5 bits of entropy. Remember, we're talking about log-base-2, so for every added bit of entropy in a password, an attacker must guess twice as many combinations.
 
-The method for cracking usually looks something like this:
+This gives us a way to compare passphrases and passwords. Passphrases are just like passwords, but each word in the passphrase is taken from a word list. If your word list has 5,000 words, and you have a 4-word random passphrase, you have `5,000 * 5,000 * 5,000 * 5,000 = 625,000,000,000,000` combinations. `log2(625,000,000,000,000) = 49.1`, so a random passphrase generated this way has 49.1 bits of entropy.
 
-1. First, the hackers start with a bunch of wordlists. The [top 10,000 passwords][pwd] is a good place to start. Also, lists of all English words, all names, dates, and so on. In less than one second, [30% of all passwords will be cracked](https://xato.net/passwords/more-top-worst-passwords/).
-2. After exhausting those wordlists, they will try all of the words again with common substitutions: capitalizing the first letter (`december` → `December`), making common letter-for-number swaps (`december` → `d3cemb3r`), and other common password variations.
-3. Next, they start combining the previous wordlists. Name + date (`doug3251983`). Name + [separator] + date (`doug.3251983`).
-4. If all else fails: brute force, a.k.a. try every combination of characters. Try `a`, then `b`, then `c` ... eventually `aa`, `ab`, `ac` ... eventually `6j2b#hi8`, `6j2b#hi9`, `6j2b#hi0`, et cetera.
-
-If your password is based on any kind of pattern, using some combination of the above steps, it will eventually be cracked. Depending on how well-protected a website keeps your password, modern computers can make somewhere between 10,000 and [350 billion guesses](http://arstechnica.com/security/2012/12/25-gpu-cluster-cracks-every-standard-windows-password-in-6-hours/) per second.
-
-Your best defense is using a truly random password generator (like this site).
-
-[pwd]: https://xato.net/passwords/more-top-worst-passwords/
-[guesses]: http://arstechnica.com/security/2012/12/25-gpu-cluster-cracks-every-standard-windows-password-in-6-hours/
-
-## I get it, simple passwords are cracked easily. But why should I use a random pass*phrase* instead of, say, `ipz2!az8k%0h`?
-
-There are dozens of random password generators out there that will happily put together a bunch of random characters for you to use as a password. These random passwords are secure, but they're a huge pain to actually remember.
-
-Random passphrases provide the best combination of **<u>memorability</u>** and **<u>security</u>**.
-
-By way of example, here are two passwords with similar crackability:
-
-|Password|Time to crack|
-|--------|-------------|
-|`p%9y#k&yFm?`| Approximately 90,182,663 centuries|
-|`logic finite eager ratio`|Approximately 189,658,722 centuries|
-
-Which would you rather remember?
-
-## Fine, you've convinced me. I'll use a passphrase. What else can I do to increase my security?
-
-The recipe for perfect password management is straightforward.
-
-### 1. Use a password manager.
-
-Firefox, Chrome, Safari and Internet Explorer all have built in password managers. But if you plan to use your passwords across devices, you probably should use one of these:
-
-* [**1Password**][1p] (Windows, Mac, Linux, iOS, Android; plus browser extensions)
-* [**BitWarden**][bw] (Windows, Mac, Linux, iOS, Android; plus browser extensions)
-* [**LastPass**][lp] (iOS, Android; Chrome plugin works on Windows, Mac, Linux)
-* [**KeePass**][kp] (Linux, Windows, Mac, Android)
-
-[1p]: https://1password.com/
-[bw]: https://bitwarden.com/
-[lp]: https://lastpass.com/
-[kp]: http://keepass.info/
-
-### 2. Use a strong <u>master password</u> for your password manager.
-
-This password needs to be strong, and you need to memorize it. This is when a passphrase would be especially useful.
-
-### 3. Use a different password or passphrase for every site.
-
-Your password manager should provide a password or passphrase generator -- use it! It should have options to adjust length and include or exclude the various characters that are allowed or disallowed on different sites.
-
-You don't need to generate per-site passwords with this site, because, since you're using a password manager, you won't need to memorize them.
-
-## Should I really be getting my password from a website?
-
-Honestly? Probably not. But in this page's defense, it makes **zero** external calls (no images, no javascript). Check your browser's network tab to verify. The passwords are all created by code contained in this page, and they are never stored.
-
-For extra security, this page is designed to run entirely offline: <a href="/generate_passphrase.html" download>save</a> this page to your hard drive, disconnect from the internet, and open it in a browser. This way you can assure that the passwords are not being transmitted anywhere.
-
-And for the truly paranoid, I recommend something called [diceware](http://world.std.com/~reinhold/diceware.html), which is a completely offline, non-computer based method of creating passphrases. It involves six dice, and a printed wordlist. The author also recommends you close your blinds while doing it.
+If you use uppercase and lowercase letters, numbers, and all special symbols, you're choosing from 89 characters. A 8-character random password chosen from those 89 characters has 51.8 bits of entropy, so it's just a little stronger than the passphrase above.
 
 ## Why did you fork Use A Passphrase?
 
-1. The project appears to be unmaintained at the moment. The last update was in 2019, and there are a handful of open issues.
-2. I think passphrases using a larger word list are more convenient, because you get more entropy packed into fewer words. This site allows me to use a larger word list. This site uses a word list of about 44,000 words instead of the about 7.5k words in the commonly-used EFF long wordlist, used by Use A Passphrase.
+1. I think passphrases using a larger word list are more convenient, because you get more entropy packed into fewer words. This site allows me to use a larger word list. This site uses a word list of about 44,000 words instead of the about 7.5k words in the commonly-used EFF long wordlist, used by Use A Passphrase.
+2. I want to expose readers to a principled exploration of password strength: entropy.
+3. The last update to the Use A Passphrase code was in 2019, and there are a handful of open issues, some of which I want to address with this site.    
 
-I'm very grateful to Mike Hearn for making Use A Passphrase and I've recommended it to my friends!
+I'm very grateful to Mike Hearn for making Use A Passphrase. It generates good passphrases, has a great interface, and takes care to explain _why_. I've recommended it to my friends! I want to continue those themes with this site.
 
-## Thanks for reading, and stay secure!
+I personally think you should generate your passwords on _this site_ because the expanded word list gives you stronger passphrases for (I think) no extra work.
