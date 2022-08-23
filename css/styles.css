@@ -10,7 +10,7 @@ h1 {
   text-transform: uppercase;
   text-align: center;
   font: 100 48px 'MH';
-  margin: 0 auto 20px auto;
+  margin: 50px auto 50px auto;
 }
 h1 span {
   font-weight: 400;
@@ -36,9 +36,11 @@ select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background: url(data:image/png;charset=utf-8;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAAA1AQMAAACN/txFAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAGUExURQAAAAEBAcq50i8AAAACdFJOU/0BoIZiXgAAAMJJREFUKM9VzTERwzAMhWHlMmRMGYRCGYRSGcQMCqFUAsUQNHrw2XX0JMvWIn2n4SeaJgz3i+5Bb4qDPsSDmJJjYcqulam4Nqbq2ps8eDR58Gzy4NXEkzzYHrUHl0c9uD7qwU1kwX3SIbL8KbL8JbJ8FSXLibLlRMVyomo5KGgOujUHRc1BPClpHMoah4rGoapxVUBcdSM+6OyKyKkYOVVCTpWRUxXkVBU5U5Cc6ZacKUrONK80KS+jyjqqbpO+k37QH/1MXwF6V9G6AAAAAElFTkSuQmCC) no-repeat 97% white;
-  background-size: 10px 5px;
-  padding: 0 25px;
+  /* background: url(data:image/png;charset=utf-8;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAAA1AQMAAACN/txFAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAGUExURQAAAAEBAcq50i8AAAACdFJOU/0BoIZiXgAAAMJJREFUKM9VzTERwzAMhWHlMmRMGYRCGYRSGcQMCqFUAsUQNHrw2XX0JMvWIn2n4SeaJgz3i+5Bb4qDPsSDmJJjYcqulam4Nqbq2ps8eDR58Gzy4NXEkzzYHrUHl0c9uD7qwU1kwX3SIbL8KbL8JbJ8FSXLibLlRMVyomo5KGgOujUHRc1BPClpHMoah4rGoapxVUBcdSM+6OyKyKkYOVVCTpWRUxXkVBU5U5Cc6ZacKUrONK80KS+jyjqqbpO+k37QH/1MXwF6V9G6AAAAAElFTkSuQmCC) no-repeat 97% white; */
+  /* background-size: 10px 5px; */
+  background-color: white;
+  padding: 5px;
+  margin: 10px;
 }
 /*target Internet Explorer 9 and Internet Explorer 10:*/
 @media screen and (min-width:0\0) {
@@ -57,10 +59,10 @@ button {
   transition: all 0.2s ease;
   margin: 0 30px;
 }
-button:hover {
+/* button:hover {
   background-color: #5dfa7b;
   color: white;
-}
+} */
 button:active {
   background-color: #48c260;
 }
@@ -96,19 +98,22 @@ li {
 }
 #passphrase {
   font-size: x-large;
-  margin: 25px;
+  margin: 25px 0 25px 0;
+  /* Accommodates 2 lines of text on narrow screens, so buttons don't move when regenerating. */
+  min-height: 80px;
 }
 #copy-btn {
   text-align: center;
 }
 #passphrase_container {
-  margin: 50px;
+  margin: 50px 0;
   text-align: center;
 }
 #passphrase_stats {
   color: #888;
   text-align: center;
-  margin: 25px;
+  margin: 25px 0;
+  font-size: small;
 }
 .passphrase-label {
   color: #888;
@@ -124,9 +129,8 @@ li {
   vertical-align: middle;
   padding-top: 10px;
   padding-bottom: 10px;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  margin: 50px 0;
+  /* border-top: 1px solid #ddd; */
+  /* border-bottom: 1px solid #ddd; */
 }
 .social-buttons svg {
   vertical-align: middle;
@@ -158,4 +162,8 @@ code, .password {
   margin: 0;
   padding-top: 10px;
   padding-bottom: 10px;
+}
+.spacer {
+  display: block;
+  height: 50px;
 }
