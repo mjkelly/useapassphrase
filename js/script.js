@@ -14,20 +14,20 @@ function randomNumberBetweenZeroAndOne() {
   return crypto.getRandomValues(new Uint32Array(1))[0] / 4294967295;
 }
 
-function generatePassword(numberOfWords, separator) {
-  numberOfWords = parseInt(numberOfWords);
-
-  // Empty array to be filled with wordlist
-  var generatedPasswordArray = [];
-
-
-  // Grab a random word, push it to the password array
-  for (var i = 0; i < numberOfWords; i++) {
-      var index = Math.floor(randomNumberBetweenZeroAndOne() * wordlist.length)
-      generatedPasswordArray.push(wordlist[index]);
+// Generate random indexes into the wordlist.
+function randomIndexes(num, wordListLength) {
+  var output = [];
+  for (var i = 0; i < num; i++) {
+      var index = Math.floor(randomNumberBetweenZeroAndOne() * wordListLength);
+      output.push(index);
   }
+  return output;
+}
 
-  return generatedPasswordArray.join(separator);
+// Returns `numberOfWords` random words, separated by `separator`.
+function generatePassword(numberOfWords, separator) {
+  var indexes = randomIndexes(numberOfWords, wordlist.length);
+  return indexes.map((x) => wordlist[x]).join(separator);
 }
 
 function showPassphraseStats(numberOfWords, wordListLength) {
@@ -39,7 +39,7 @@ function showPassphraseStats(numberOfWords, wordListLength) {
 }
 
 function generateNewPassphrase() {
-  var numberOfWords = selectField.options[selectField.selectedIndex].value;
+  var numberOfWords = parseInt(selectField.options[selectField.selectedIndex].value);
   var separatorName = separatorField.options[separatorField.selectedIndex].value;
   var separator = ' ';
   if (separatorName === 'dashes') {

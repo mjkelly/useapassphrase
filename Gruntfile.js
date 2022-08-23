@@ -2,10 +2,14 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     inline: {
-      dist: {
+      index: {
         src: 'index.html',
         dest: 'dist/index.html'
-      }
+      },
+      bench: {
+        src: 'benchmark.html',
+        dest: 'dist/benchmark.html'
+      },
     },
     assemble: {
       options: {
@@ -14,9 +18,13 @@ module.exports = function(grunt) {
           gfm: true,
           },
       },
-      site: {
+      index: {
         src: ['dist/index.html'],
         dest: 'dist/index.html'
+      },
+      bench: {
+        src: ['dist/benchmark.html'],
+        dest: 'dist/benchmark.html'
       }
     },
     connect: {
