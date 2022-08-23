@@ -12,7 +12,7 @@
   // We don't care about matching the numerica output to words, so we call the underlying randomIndexes function here.
   var output = document.getElementById("output");
   var fragment = document.createDocumentFragment();
-  for (var i = 0; i < 10000; i++) {
+  for (var i = 0; i < 100000; i++) {
     el = document.createElement('div');
     el.innerText = randomIndexes(5, wordlist.length).join(' ');
     fragment.appendChild(el);
