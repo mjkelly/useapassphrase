@@ -15,7 +15,13 @@ This site needs a lot of work. Please contribute to any of the following:
 # Running It Locally
 
 It requires grunt-cli (`npm install -g grunt-cli`), after which you can just
-run `npm install` and then `grunt`.
+run `npm install` and then `grunt`. If you don't want to install grunt globally,
+you can run `npm install grunt-cli`, and then you run
+`./node_modules/grunt-cli/bin/grunt` instead of `grunt`.
+
+You can open `dist/index.html` directly in your browser, or you can run `grunt connect`
+to start a webserver. This is useful, for instance, if you want to view the site from
+your phone.
 
 If you have Docker & Docker Compose installed, you should theoretically just be
 able to run `docker-compose up` to build the /dist directory, which will create

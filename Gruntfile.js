@@ -18,11 +18,21 @@ module.exports = function(grunt) {
         src: ['dist/index.html'],
         dest: 'dist/index.html'
       }
+    },
+    connect: {
+      server: {
+        options: {
+          port: 8080,
+          base: 'dist',
+          keepalive: true,
+        },
+      },
     }
   });
 
   grunt.loadNpmTasks('grunt-inline');
   grunt.loadNpmTasks('assemble');
+  grunt.loadNpmTasks('grunt-contrib-connect')
 
   grunt.registerTask('default', ['inline', 'assemble']);
 
